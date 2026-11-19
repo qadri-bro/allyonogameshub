@@ -1,0 +1,29 @@
+.checkbox-row {
+  flex-direction: row !important;
+  align-items: center;
+  gap: 9px !important;
+  cursor: pointer;
+}
+
+.checkbox-row input[type="checkbox"] {
+  width: 15px;
+  height: 15px;
+  margin: 0;
+  accent-color: #182f5c;
+}
+
+.featured-tag {
+  display: inline-block;
+  margin-left: 6px;
+  padding: 4px 7px;
+  border-radius: 20px;
+  background: #fff4df;
+  color: #a97920;
+  font-size: 9px;
+  font-weight: 800;
+}
+
+.download-button_dont_copy_created_by_yono-games[aria-disabled="true"] {
+  cursor: not-allowed;
+  opacity: 0.65;
+}
