@@ -3,10 +3,22 @@ services:
     name: allyonogameshub
     runtime: node
     plan: free
-    buildCommand: cd yono-platform/backend && npm ci && cd ../website && npm ci && npm run build && cd ../admin && npm ci && npm run build
+    autoDeploy: true
+    buildCommand: |
+      set -e
+      cd yono-platform/backend
+      npm ci --omit=dev
+      cd ../website
+      npm ci
+      npm run build
+      cd ../admin
+      npm ci
+      npm run build
     startCommand: cd yono-platform/backend && npm start
     healthCheckPath: /api/health
     envVars:
+      - key: NODE_ENV
+        value: production
       - key: MONGODB_URI
         sync: false
       - key: JWT_SECRET
