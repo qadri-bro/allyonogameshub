@@ -55,12 +55,11 @@ The repository root contains a Render Blueprint that builds the website and admi
 - Website: `https://<your-render-service>.onrender.com/`
 - Admin: `https://<your-render-service>.onrender.com/admin/`
 
-1. Create a MongoDB Atlas database and a database user. In Atlas Network Access, allow Render to connect. Render's free service does not provide a fixed outbound IP, so use `0.0.0.0/0` only with a unique, strong database password and least-privilege database access.
+1. Create a MongoDB Atlas database and a new database user. Rotate any Atlas password previously shared in chat. In Atlas Network Access, allow Render to connect. Render's free service does not provide a fixed outbound IP, so use `0.0.0.0/0` only with a unique, strong database password and least-privilege database access.
 2. In Render, choose **New → Blueprint**, connect this GitHub repository, and deploy `render.yaml`.
 3. Enter `MONGODB_URI`, `ADMIN_EMAIL` and a strong `ADMIN_PASSWORD` when prompted. Render generates `JWT_SECRET`.
-4. After the service is created, set `PUBLIC_SITE_URL` to the service URL shown by Render, then redeploy.
-5. In the Render service Shell, run `cd yono-platform/backend && npm run create-admin` once to create the admin account.
-6. Open `/admin/` on the Render URL and sign in with the admin email and password.
+4. In the Render service Shell, run `cd yono-platform/backend && npm run create-admin` once to create the admin account.
+5. Open `/admin/` on the Render URL and sign in with the admin email and password.
 
 The free Render service uses ephemeral storage. Uploaded APKs and thumbnails can be lost when the service restarts or redeploys; use persistent/object storage before relying on production uploads. Free services can also sleep when idle.
 

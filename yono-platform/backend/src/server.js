@@ -164,6 +164,12 @@ function validReferralUrl(value) {
   }
 }
 
+function publicSiteBaseUrl() {
+  return process.env.PUBLIC_SITE_URL
+    || process.env.RENDER_EXTERNAL_URL
+    || 'http://localhost:5173';
+}
+
 // =====================================
 // API ROUTES
 // =====================================
@@ -494,7 +500,7 @@ app.get('/api/download/:slug', asyncRoute(async (req, res) => {
   const target = game.referralUrl.startsWith('/')
     ? new URL(
         game.referralUrl,
-        process.env.PUBLIC_SITE_URL || 'http://localhost:5173'
+        publicSiteBaseUrl()
       ).toString()
     : game.referralUrl;
 
@@ -529,7 +535,7 @@ app.get('/api/referral/:slug', asyncRoute(async (req, res) => {
   const target = game.referralUrl.startsWith('/')
     ? new URL(
         game.referralUrl,
-        process.env.PUBLIC_SITE_URL || 'http://localhost:5173'
+        publicSiteBaseUrl()
       ).toString()
     : game.referralUrl;
 
