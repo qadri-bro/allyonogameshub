@@ -49,6 +49,21 @@ Open http://localhost:5174 and sign in using `ADMIN_EMAIL` and `ADMIN_PASSWORD` 
 
 To add a game, select **Add new game**, enter its name and listing details, optionally upload a thumbnail/APK or provide an HTTPS download/referral link, then choose **Published** to show it on the public website. Draft listings stay hidden. You can edit or delete games from the dashboard.
 
+## Deploy to Render
+
+The repository root contains a Render Blueprint that builds the website and admin apps, then serves both from the Node backend. The API, website and admin dashboard will share one Render URL:
+- Website: `https://<your-render-service>.onrender.com/`
+- Admin: `https://<your-render-service>.onrender.com/admin/`
+
+1. Create a MongoDB Atlas database and a database user. In Atlas Network Access, allow Render to connect. Render's free service does not provide a fixed outbound IP, so use `0.0.0.0/0` only with a unique, strong database password and least-privilege database access.
+2. In Render, choose **New → Blueprint**, connect this GitHub repository, and deploy `render.yaml`.
+3. Enter `MONGODB_URI`, `ADMIN_EMAIL` and a strong `ADMIN_PASSWORD` when prompted. Render generates `JWT_SECRET`.
+4. After the service is created, set `PUBLIC_SITE_URL` to the service URL shown by Render, then redeploy.
+5. In the Render service Shell, run `cd yono-platform/backend && npm run create-admin` once to create the admin account.
+6. Open `/admin/` on the Render URL and sign in with the admin email and password.
+
+The free Render service uses ephemeral storage. Uploaded APKs and thumbnails can be lost when the service restarts or redeploys; use persistent/object storage before relying on production uploads. Free services can also sleep when idle.
+
 ## Notes
 - Uploaded APKs are stored in `backend/assets/uploads`; thumbnails in `backend/assets/thumbnails`.
 - The admin can add, edit, publish/unpublish and delete listings.
