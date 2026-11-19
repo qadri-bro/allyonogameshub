@@ -6,6 +6,11 @@ export default defineConfig({
   plugins: [react()],
   base: '/admin/',
   server: {
-    port: 5174
+    port: 5174,
+    host: '0.0.0.0',
+    proxy: {
+      '/api': 'http://localhost:5000',
+      '/assets': 'http://localhost:5000'
+    }
   }
 });

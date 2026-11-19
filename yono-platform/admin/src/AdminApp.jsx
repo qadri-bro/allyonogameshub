@@ -7,9 +7,7 @@ import {
 import './style.css';
 import './admin-enhancements.css';
 
-const API = import.meta.env.DEV
-  ? (import.meta.env.VITE_API_URL || 'http://localhost:5000')
-  : '';
+const API = '';
 
 const WEBSITE = import.meta.env.DEV
   ? (import.meta.env.VITE_WEBSITE_URL || 'http://localhost:5173')

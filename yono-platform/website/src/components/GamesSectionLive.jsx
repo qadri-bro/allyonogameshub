@@ -8,9 +8,7 @@ import {
 } from '@fortawesome/free-solid-svg-icons';
 
 
-const API = import.meta.env.DEV
-  ? (import.meta.env.VITE_API_URL || 'http://localhost:5000')
-  : '';
+const API = '';
 
 
 function GamesSectionLive() {
